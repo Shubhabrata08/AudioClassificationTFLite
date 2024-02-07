@@ -6,7 +6,7 @@ import librosa.display
 import matplotlib.pyplot as plt
 
 def record_audio(sample_rate, duration):
-    audio_data = sd.rec(int(sample_rate * duration), samplerate=sample_rate, channels=1, dtype='int16')
+    audio_data = sd.rec(int(sample_rate * duration), samplerate=sample_rate, channels=1, dtype='float')
     sd.wait()
     return audio_data.flatten()
 

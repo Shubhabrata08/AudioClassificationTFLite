@@ -4,12 +4,12 @@ import librosa
 import time
 
 def record_audio(sample_rate, duration):
-    audio_data = sd.rec(int(sample_rate * duration), samplerate=sample_rate, channels=1, dtype='int16')
+    audio_data = sd.rec(int(sample_rate * duration), samplerate=sample_rate, channels=1, dtype='float')
     sd.wait()
     return audio_data.flatten()
 
 def extract_mfcc(audio_data, sample_rate, n_mfcc=13, hop_length=512):
-    mfccs = librosa.feature.mfcc(y=float(np.asarray(audio_data))[0,len(audio_data)-1], sr=sample_rate, n_mfcc=n_mfcc, hop_length=hop_length)
+    mfccs = librosa.feature.mfcc(y=(audio_data), sr=sample_rate, n_mfcc=n_mfcc, hop_length=hop_length)
     return mfccs
 
 def main():
